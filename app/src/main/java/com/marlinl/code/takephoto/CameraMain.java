@@ -20,25 +20,8 @@ public class CameraMain extends Activity {
         setContentView(R.layout.camera_activity);
         if (null == savedInstanceState){
             getFragmentManager().beginTransaction()
-                    .replace(R.layout.camera_activity,new DisplayController())
+                    .replace(R.id.container,new DisplayController())
                     .commit();
-        }
-    }
-
-    class CameraSubThread implements Runnable {
-        @Override
-        public void run() {
-            CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            try {
-                String [] cameraIDs = cameraManager.getCameraIdList();
-                if (cameraIDs[0] != null){
-                    CameraCharacteristics cameraCharacteristics
-                            =cameraManager.getCameraCharacteristics(cameraIDs[0]);
-
-                }
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
